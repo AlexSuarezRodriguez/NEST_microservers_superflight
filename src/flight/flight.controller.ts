@@ -9,12 +9,14 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { ClientProxySuperFlights } from 'src/common/proxy/client-proxy';
 import { FlightDTO } from './dto/flight.dto';
 import { IFlight } from 'src/common/interfaces/flight.interface';
 import { Observable } from 'rxjs';
 import { FlightMSG, PassengerMSG } from 'src/common/constants';
 
+@ApiTags('fligths')
 @Controller('api/v2/flight')
 export class FlightController {
   constructor(private readonly clientProxy: ClientProxySuperFlights) {}
