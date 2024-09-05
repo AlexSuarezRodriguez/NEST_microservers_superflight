@@ -24,8 +24,8 @@ export class UserController {
   }
 
   @MessagePattern(UserMSG.UPDATE)
-  updateById(@Payload() paylaod: any) {
-    const{id, userDTO} = paylaod
+  updateById(@Payload() payload: any) {
+    const{id, userDTO} = payload
     return this.usersService.updateById({ id, userDTO });
   }
 
