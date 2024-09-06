@@ -4,7 +4,7 @@ import { UserService } from './user.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { UserMSG } from 'src/common/constants';
 
-@Controller() 
+@Controller()
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

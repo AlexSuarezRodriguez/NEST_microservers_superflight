@@ -36,6 +36,6 @@ export class AuthService {
   }
 
   async signUp(userDTO: UserDTO) {
-    return await this._clientProxyUser.send(UserMSG.CREATE,{ userDTO });
+    return await this._clientProxyUser.send(UserMSG.CREATE, userDTO );
   }
 }
