@@ -2,11 +2,8 @@ version: "3.7"
 services:
 
   app:
-    image: app_flights:V2
+    image: alexsuarezr/app_flights:V2
     container_name: app_flights
-    build:
-      context: ./api-gateway
-      dockerfile: Dockerfile
     env_file: .env
     ports:
       - 3000:3000
@@ -18,11 +15,8 @@ services:
       - ms_nestjs_flights
 
   microservice-flights:
-    image: microservice_flights:V2
+    image: alexsuarezr/microservice_flights:V2
     container_name: microservice_flights
-    build:
-      context: ./microservice-flights
-      dockerfile: Dockerfile
     env_file: .env
     restart: always
     depends_on:
@@ -32,11 +26,8 @@ services:
       - ms_nestjs_flights
 
   microservice-passengers:
-    image: microservice_passengers:V2
+    image: alexsuarezr/microservice_passengers:V2
     container_name: microservice_passengers
-    build:
-      context: ./microservice-passengers
-      dockerfile: Dockerfile
     env_file: .env
     restart: always
     depends_on:
@@ -46,11 +37,8 @@ services:
       - ms_nestjs_flights
 
   microservice-users:
-    image: microservice_users:V2
+    image: alexsuarezr/microservice_users:V2
     container_name: microservice_users
-    build:
-      context: ./microservice-users
-      dockerfile: Dockerfile
     env_file: .env
     restart: always
     depends_on:
