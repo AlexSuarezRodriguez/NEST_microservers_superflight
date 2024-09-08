@@ -1,4 +1,4 @@
-version: 3.7
+version: "3.7"
 services:
 
   app:
@@ -6,71 +6,71 @@ services:
     container_name: app_flights
     build:
       context: ./api-gateway
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     env_file: .env
     ports:
-      -80:3000
+      - 3000:3000
     restart: always
     depends_on:
       - mongodb
       - rabbitmq
     networks:
-      - ms-nestjs
+      - ms_nestjs_flights
 
   microservice-flights:
     image: microservice_flights:V2
     container_name: microservice_flights
     build:
       context: ./microservice-flights
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     env_file: .env
     restart: always
     depends_on:
       - mongodb
       - rabbitmq
     networks:
-      - ms-nestjs
+      - ms_nestjs_flights
 
   microservice-passengers:
     image: microservice_passengers:V2
     container_name: microservice_passengers
     build:
-      context: ./microservice_passengers
-      dockerfile: dockerfile
+      context: ./microservice-passengers
+      dockerfile: Dockerfile
     env_file: .env
     restart: always
     depends_on:
       - mongodb
       - rabbitmq
     networks:
-      - ms-nestjs
+      - ms_nestjs_flights
 
   microservice-users:
     image: microservice_users:V2
     container_name: microservice_users
     build:
-      context: ./microservice_users
-      dockerfile: dockerfile
+      context: ./microservice-users
+      dockerfile: Dockerfile
     env_file: .env
     restart: always
     depends_on:
       - mongodb
       - rabbitmq
     networks:
-      - ms-nestjs
+      - ms_nestjs_flights
 
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rmq
     ports:
       - "5672:5672"
-      - "15672/15672"
+      - "15672:15672"
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
     restart: always
     networks:
-      - ms-nestjs
+      - ms_nestjs_flights
 
   mongodb:
     image: mongo:4.4
@@ -84,12 +84,12 @@ services:
     ports:
       - "27017:27017"
     networks:
-      - ms-nestjs
+      - ms_nestjs_flights
 
 volumes:
   mongodb:
     driver: local
 
 networks:
-  ms_sabuesos:
+  ms_nestjs_flights:
     driver: bridge
